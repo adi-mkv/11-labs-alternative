@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ElevenLabs Alternatives for AI UGC — Pocket TTS &amp; Chatterbox</title><meta name="description" content="Clone a custom voice for your AI UGC with Pocket TTS or Chatterbox. Official links, a quick command, and a copyable coding-agent setup prompt."><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Geist:wght@300;400;500&display=swap" rel="stylesheet"><style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg-from:   #0f0d13;
+    --bg-to:     #0a0a0c;
+    --bg-raised: #17151e;
+    --bg-inset:  #1e1c27;
+    --border:    #272430;
+    --text:      #f0ede8;
+    --text-2:    #f0ede8;
+    --text-3:    #6b6880;
+    --accent:    #3d2474;
+    --col:       680px;
+  }
+
+  html { font-size: 17px; scroll-behavior: smooth; }
+
+  body {
+    background: linear-gradient(135deg, var(--bg-from) 0%, var(--bg-to) 100%);
+    min-height: 100vh;
+    color: var(--text);
+    font-family: 'Geist', system-ui, sans-serif;
+    font-weight: 300;
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  #progress {
+    position: fixed;
+    top: 0; left: 0;
+    height: 2px;
+    background: var(--accent);
+    width: 0%;
+    z-index: 200;
+    transition: width 0.08s linear;
+  }
+
+  .hero {
+    max-width: var(--col);
+    margin: 0 auto;
+    padding: 4rem 1.5rem 0;
+    opacity: 0;
+    animation: fadeUp 0.7s ease 0.1s forwards;
+  }
+
+  h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.8rem, 7vw, 4.2rem);
+    font-weight: 700;
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    margin-bottom: 1.2rem;
+  }
+
+  .subtitle {
+    font-family: 'Geist', sans-serif;
+    font-size: 0.98rem;
+    font-weight: 300;
+    color: var(--text-2);
+    line-height: 1.72;
+    margin-bottom: 1.6rem;
+    max-width: 540px;
+  }
+
+  .byline {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    padding-bottom: 1.4rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .avatar {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: var(--bg-inset);
+    border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-2);
+    flex-shrink: 0;
+  }
+
+  .byline-text { font-size: 0.76rem; color: var(--text-3); line-height: 1.5; }
+  .byline-text strong { color: var(--text-2); font-weight: 500; display: block; }
+
+  article {
+    max-width: var(--col);
+    margin: 0 auto;
+    padding: 2.6rem 1.5rem 7rem;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.25s forwards;
+  }
+
+  article p {
+    font-family: 'Geist', sans-serif;
+    font-size: 1rem;
+    font-weight: 300;
+    color: var(--text-2);
+    margin-bottom: 1.5rem;
+    line-height: 1.82;
+  }
+
+  article p:first-of-type { font-size: 1.04rem; }
+
+  .drop-cap::first-letter {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 4.5rem;
+    font-weight: 700;
+    float: left;
+    line-height: 0.8;
+    margin-right: 0.1em;
+    margin-top: 0.12em;
+    color: var(--text);
+  }
+
+  h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.75rem;
+    font-weight: 600;
+    color: var(--text);
+    margin: 3.5rem 0 0.85rem;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+  }
+
+  .skill-num {
+    display: inline-block;
+    font-family: 'Geist', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    color: var(--text-3);
+    text-transform: uppercase;
+    margin-bottom: 0.4rem;
+  }
+
+  /* Code block */
+  .code-wrap {
+    background: var(--bg-raised);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 2.8rem 0;
+  }
+
+  .code-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.65rem 1.1rem;
+    border-bottom: 1px solid var(--border);
+    font-family: 'Geist', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.06em;
+    color: var(--text-3);
+  }
+
+  .copy-btn {
+    position: relative;
+    background: none;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    color: var(--text-3);
+    font-family: 'Geist', sans-serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.05em;
+    padding: 0.25rem 0.65rem;
+    cursor: pointer;
+    overflow: hidden;
+    transition: color 0.2s, border-color 0.2s, background 0.2s;
+    min-width: 52px;
+  }
+
+  .copy-btn:hover {
+    color: var(--text-2);
+    border-color: var(--text-3);
+  }
+
+  .copy-btn .btn-label {
+    display: block;
+    transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.18s ease;
+  }
+
+  .copy-btn.copied {
+    color: #9d8ec4;
+    border-color: #5a4490;
+    background: rgba(61, 36, 116, 0.15);
+  }
+
+  .copy-btn.copied .btn-label {
+    transform: scale(1.08);
+  }
+
+  .copy-btn.fading {
+    transition: color 0.6s ease, border-color 0.6s ease, background 0.6s ease;
+    color: var(--text-3);
+    border-color: var(--border);
+    background: none;
+  }
+
+  pre {
+    padding: 1.4rem 1.2rem;
+    overflow-x: auto;
+    font-family: 'Geist Mono', 'Fira Code', 'Courier New', monospace;
+    font-size: 0.79rem;
+    line-height: 1.75;
+    color: var(--text-2);
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+
+  pre .comment { color: #6b6880; }
+
+  .link-row {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    margin-top: 0.25rem;
+    margin-bottom: 1.75rem;
+  }
+
+  .pill-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.3rem 0.85rem;
+    border-radius: 99px;
+    border: 1px solid var(--border);
+    background: var(--bg-raised);
+    font-family: 'Geist', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 400;
+    color: var(--text-3);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    transition: color 0.18s, border-color 0.18s;
+  }
+
+  .pill-link:hover {
+    color: var(--text-2);
+    border-color: var(--text-3);
+  }
+
+  .skill-img {
+    width: 100%;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    display: block;
+    margin: 1.6rem 0 1.4rem;
+    background: var(--bg-raised);
+  }
+
+  .divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 3rem 0;
+  }
+
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 1.8rem 1.5rem;
+    text-align: center;
+    font-size: 0.7rem;
+    color: var(--text-3);
+    letter-spacing: 0.06em;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 600px) {
+    h1 { font-size: 2.4rem; }
+    .hero { padding-top: 2.5rem; padding-left: 1.5rem; padding-right: 1.5rem; }
+  }
+
+  article a { color: #b9a2eb; text-underline-offset: 3px; }
+  .skill-num { display:block; }
+  h2 { margin-top: 0.3rem; }
+  .code-wrap { margin: 1.5rem 0; }
+  .pill-link { color: #b9aecb; }
+  .byline-text, .skill-num, .code-header, .copy-btn, footer { color: #a69db8; }
+  .note { font-size: .83rem; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior:auto; } .hero, article { opacity:1; animation:none; } }
+</style></head><body><div id="progress" aria-hidden="true"></div>
+<header class="hero">
+<h1>A Better Voice for Your AI UGC</h1>
+<p class="subtitle">Two open-source alternatives to ElevenLabs. A reference voice, your script, and a setup prompt you can hand to your agent.</p>
+<div class="byline"><div class="avatar" aria-hidden="true">A</div><div class="byline-text"><strong>Adi</strong>Quick resource &nbsp;·&nbsp; October 2026</div></div>
+</header>
+<article>
+<p>You’re here for step three from the reel: fix the voice. Replace the video model’s default narration with a custom voiceover, then bring that audio into your edit or lip-sync workflow.</p>
+<hr class="divider">
+<section aria-labelledby="pocket"><span class="skill-num">01 / The simple starting point</span><h2 id="pocket">Pocket TTS</h2>
+<p>Kyutai’s voice-cloning model runs on CPU, so you can start without a dedicated GPU. Give it a clean voice sample and the words you want spoken. A good first choice for a local setup.</p>
+<div class="link-row"><a class="pill-link" href="https://github.com/kyutai-labs/pocket-tts">↗ GitHub &amp; setup</a><a class="pill-link" href="https://kyutai.org/pocket-tts">↗ Try the demo</a></div>
+<div class="code-wrap"><div class="code-header"><span>QUICK START · REQUIRES UV</span><button class="copy-btn" type="button" data-copy="pocket-command" aria-label="Copy quick start · requires uv"><span class="btn-label">Copy</span></button></div><pre id="pocket-command">uvx pocket-tts generate --voice ./reference.wav \
+  --text &quot;I tried this for a week. Here is what actually changed.&quot; \
+  --output-path ./voiceover.wav</pre></div>
+<p class="note">The first run downloads the model. Use the agent prompt below if you want it to handle installation and hardware settings.</p></section>
+<hr class="divider">
+<section aria-labelledby="chatterbox"><span class="skill-num">02 / More voice options</span><h2 id="chatterbox">Chatterbox</h2>
+<p>Resemble AI’s TTS family also clones voices from reference audio. Turbo supports expressive cues like laughter; the Multilingual model covers more languages. Choose the variant for your hardware—Turbo’s official example uses an NVIDIA GPU.</p>
+<div class="link-row"><a class="pill-link" href="https://github.com/resemble-ai/chatterbox">↗ GitHub &amp; setup</a><a class="pill-link" href="https://resemble-ai.github.io/chatterbox_demopage/">↗ Listen to samples</a></div></section>
+<hr class="divider">
+<section aria-labelledby="agent"><span class="skill-num">03 / Copy, paste, build</span><h2 id="agent">Give this to your coding agent</h2>
+<p>Have a clean, single-speaker recording ready—around 10 seconds is a practical starting point—and your finished script. Use your own voice or one you have permission to clone.</p>
+<div class="code-wrap"><div class="code-header"><span>AGENT PROMPT</span><button class="copy-btn" type="button" data-copy="agent-prompt" aria-label="Copy agent prompt"><span class="btn-label">Copy</span></button></div><pre id="agent-prompt">Set up local voice cloning for my AI UGC voiceovers.
+
+Read the current official docs first:
+https://github.com/kyutai-labs/pocket-tts
+https://github.com/resemble-ai/chatterbox
+
+Check my OS, Python version and GPU. Start with Pocket TTS for a simple CPU setup; offer Chatterbox if I want more expression or language options. Use a separate Python environment and install dependencies for my hardware.
+
+I will provide reference.wav (my voice or a voice I have permission to use) and script.txt. Generate voiceover.wav from that script using the reference voice. Start with one short test, let me listen, then generate the full script in manageable chunks.
+
+Give me a repeatable command and a minimal local UI to upload a reference, enter text, preview and download WAV. Keep files local, bind the UI to localhost, handle missing files clearly, and document the installed versions. If model access needs approval or a login, tell me before proceeding.</pre></div>
+<p class="note">No ElevenLabs subscription required. You still need compute, storage and the initial model download. Voice quality depends on your sample and chosen model; listen to a short test before rendering everything.</p>
+</section>
+</article>
+<footer>Made by <a href="https://www.instagram.com/adi.mkv/" style="color:inherit">Adi</a> &nbsp;·&nbsp; Better AI UGC, one detail at a time.</footer><script>
+const progress = document.getElementById('progress');
+function updateProgress() { const total = document.documentElement.scrollHeight - innerHeight; progress.style.width = (total > 0 ? scrollY / total * 100 : 0) + '%'; }
+addEventListener('scroll', updateProgress, {passive:true}); addEventListener('resize', updateProgress); updateProgress();
+async function copyText(text) {
+  if (navigator.clipboard && window.isSecureContext) { await navigator.clipboard.writeText(text); return; }
+  const el=document.createElement('textarea'); el.value=text; el.style.cssText='position:fixed;opacity:0'; document.body.appendChild(el); el.select();
+  const copied=document.execCommand('copy'); el.remove(); if (!copied) throw new Error('Copy failed');
+}
+document.querySelectorAll('[data-copy]').forEach(btn => btn.addEventListener('click', async () => {
+  const label=btn.querySelector('.btn-label');
+  try { await copyText(document.getElementById(btn.dataset.copy).textContent); label.textContent='Copied!'; btn.classList.add('copied'); }
+  catch { label.textContent='Select text'; }
+  clearTimeout(btn.resetTimer); btn.resetTimer=setTimeout(()=>{ label.textContent='Copy'; btn.classList.remove('copied'); },2000);
+}));
+</script></body></html>

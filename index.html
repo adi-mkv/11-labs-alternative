@@ -1,5 +1,13 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ElevenLabs Alternatives for AI UGC — Pocket TTS &amp; Chatterbox</title><meta name="description" content="Clone a custom voice for your AI UGC with Pocket TTS or Chatterbox. Official links, a quick command, and a copyable coding-agent setup prompt."><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Geist:wght@300;400;500&display=swap" rel="stylesheet"><style>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free ElevenLabs Alternatives — Pocket TTS &amp; Chatterbox</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Geist:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
@@ -280,65 +288,139 @@
     h1 { font-size: 2.4rem; }
     .hero { padding-top: 2.5rem; padding-left: 1.5rem; padding-right: 1.5rem; }
   }
+</style>
+</head>
+<body>
 
-  article a { color: #b9a2eb; text-underline-offset: 3px; }
-  .skill-num { display:block; }
-  h2 { margin-top: 0.3rem; }
-  .code-wrap { margin: 1.5rem 0; }
-  .pill-link { color: #b9aecb; }
-  .byline-text, .skill-num, .code-header, .copy-btn, footer { color: #a69db8; }
-  .note { font-size: .83rem; }
-  @media (prefers-reduced-motion: reduce) { html { scroll-behavior:auto; } .hero, article { opacity:1; animation:none; } }
-</style></head><body><div id="progress" aria-hidden="true"></div>
-<header class="hero">
-<h1>A Better Voice for Your AI UGC</h1>
-<p class="subtitle">Two open-source alternatives to ElevenLabs. A reference voice, your script, and a setup prompt you can hand to your agent.</p>
-<div class="byline"><div class="avatar" aria-hidden="true">A</div><div class="byline-text"><strong>Adi</strong>Quick resource &nbsp;·&nbsp; October 2026</div></div>
-</header>
+<div id="progress"></div>
+
+<section class="hero">
+  <h1>Clone Voices Without ElevenLabs</h1>
+  <p class="subtitle">Pocket TTS and Chatterbox: two free, open-source tools for custom AI voiceovers, running on your own computer.</p>
+  <div class="byline">
+    <div class="avatar">A</div>
+    <div class="byline-text">
+      <strong>Adi</strong>
+      2 min read &nbsp;·&nbsp; October 2026
+    </div>
+  </div>
+</section>
+
 <article>
-<p>You’re here for step three from the reel: fix the voice. Replace the video model’s default narration with a custom voiceover, then bring that audio into your edit or lip-sync workflow.</p>
-<hr class="divider">
-<section aria-labelledby="pocket"><span class="skill-num">01 / The simple starting point</span><h2 id="pocket">Pocket TTS</h2>
-<p>Kyutai’s voice-cloning model runs on CPU, so you can start without a dedicated GPU. Give it a clean voice sample and the words you want spoken. A good first choice for a local setup.</p>
-<div class="link-row"><a class="pill-link" href="https://github.com/kyutai-labs/pocket-tts">↗ GitHub &amp; setup</a><a class="pill-link" href="https://kyutai.org/pocket-tts">↗ Try the demo</a></div>
-<div class="code-wrap"><div class="code-header"><span>QUICK START · REQUIRES UV</span><button class="copy-btn" type="button" data-copy="pocket-command" aria-label="Copy quick start · requires uv"><span class="btn-label">Copy</span></button></div><pre id="pocket-command">uvx pocket-tts generate --voice ./reference.wav \
-  --text &quot;I tried this for a week. Here is what actually changed.&quot; \
-  --output-path ./voiceover.wav</pre></div>
-<p class="note">The first run downloads the model. Use the agent prompt below if you want it to handle installation and hardware settings.</p></section>
-<hr class="divider">
-<section aria-labelledby="chatterbox"><span class="skill-num">02 / More voice options</span><h2 id="chatterbox">Chatterbox</h2>
-<p>Resemble AI’s TTS family also clones voices from reference audio. Turbo supports expressive cues like laughter; the Multilingual model covers more languages. Choose the variant for your hardware—Turbo’s official example uses an NVIDIA GPU.</p>
-<div class="link-row"><a class="pill-link" href="https://github.com/resemble-ai/chatterbox">↗ GitHub &amp; setup</a><a class="pill-link" href="https://resemble-ai.github.io/chatterbox_demopage/">↗ Listen to samples</a></div></section>
-<hr class="divider">
-<section aria-labelledby="agent"><span class="skill-num">03 / Copy, paste, build</span><h2 id="agent">Give this to your coding agent</h2>
-<p>Have a clean, single-speaker recording ready—around 10 seconds is a practical starting point—and your finished script. Use your own voice or one you have permission to clone.</p>
-<div class="code-wrap"><div class="code-header"><span>AGENT PROMPT</span><button class="copy-btn" type="button" data-copy="agent-prompt" aria-label="Copy agent prompt"><span class="btn-label">Copy</span></button></div><pre id="agent-prompt">Set up local voice cloning for my AI UGC voiceovers.
 
-Read the current official docs first:
+  <p class="drop-cap">ElevenLabs makes voice cloning easy, but it comes with a subscription. Its Starter plan is $6/month for instant voice cloning and 30,000 credits; Creator is $22/month with professional voice cloning and 121,000 credits. The free plan has 10,000 credits but no voice cloning. Those are regular monthly prices before tax, excluding first-month offers.</p>
+
+  <div class="link-row">
+    <a class="pill-link" href="https://elevenlabs.io/pricing" target="_blank">↗ ElevenLabs pricing · checked October 2026</a>
+  </div>
+
+  <p>These two alternatives clone a voice from reference audio and turn your script into speech. Both are free to run locally, with no subscription or per-character fee. You provide the computer and electricity.</p>
+
+  <hr class="divider">
+
+  <span class="skill-num">01 / 02</span>
+  <h2>Pocket TTS</h2>
+
+  <p>Kyutai’s lightweight option is the easiest starting point for most reasonably recent laptops and desktops. It runs on CPU, uses just two CPU cores, and needs no dedicated GPU. Give it a clean voice sample and your script; it generates a WAV voiceover in that voice.</p>
+
+  <p>The standard model has 100 million parameters, with smaller English models available for weaker machines. Windows, macOS and Linux are supported. Actual speed depends on your CPU and chosen model.</p>
+
+  <img class="skill-img" src="https://github.com/user-attachments/assets/637b5ed6-831f-4023-9b4c-741be21ab238" alt="Kyutai Pocket TTS — lightweight voice cloning on CPU" loading="lazy">
+
+  <div class="link-row">
+    <a class="pill-link" href="https://github.com/kyutai-labs/pocket-tts" target="_blank">↗ GitHub &amp; setup</a>
+    <a class="pill-link" href="https://kyutai.org/pocket-tts" target="_blank">↗ Try the demo</a>
+  </div>
+
+  <hr class="divider">
+
+  <span class="skill-num">02 / 02</span>
+  <h2>Chatterbox</h2>
+
+  <p>Resemble AI’s voice-cloning family offers more expressive controls and multilingual options. Nano and Turbo support cues such as <code>[laugh]</code> and <code>[chuckle]</code>; the separate Multilingual model supports 23 languages.</p>
+
+  <p>For an ordinary computer without a dedicated GPU, choose <strong>Chatterbox Nano</strong>: its 110-million-parameter model is designed for CPU use. Resemble reports faster-than-real-time generation on eight CPU cores. Turbo and Multilingual are heavier; an NVIDIA CUDA GPU is the practical choice for fast generation. You don’t need one to start with Nano or Pocket TTS.</p>
+
+  <img class="skill-img" src="https://raw.githubusercontent.com/resemble-ai/chatterbox/master/Chatterbox-Multilingual.png" alt="Chatterbox Multilingual by Resemble AI" loading="lazy">
+
+  <div class="link-row">
+    <a class="pill-link" href="https://github.com/resemble-ai/chatterbox" target="_blank">↗ GitHub &amp; setup</a>
+    <a class="pill-link" href="https://huggingface.co/ResembleAI/chatterbox-nano" target="_blank">↗ CPU model</a>
+    <a class="pill-link" href="https://resemble-ai.github.io/chatterbox_demopage/" target="_blank">↗ Listen to samples</a>
+  </div>
+
+  <hr class="divider">
+
+  <h2>Let your agent set it up</h2>
+
+  <p>Prepare a clean, single-speaker voice clip—about 10 seconds is a useful starting point—and your script. Use your own voice or one you have permission to clone. Paste this into your coding agent:</p>
+
+  <div class="code-wrap">
+    <div class="code-header">
+      <span>AGENT PROMPT</span>
+      <button class="copy-btn" onclick="copyCode(this, 'agent-prompt')">
+        <span class="btn-label">Copy</span>
+      </button>
+    </div>
+    <pre id="agent-prompt">Set up voice cloning on my computer using these official repos:
 https://github.com/kyutai-labs/pocket-tts
 https://github.com/resemble-ai/chatterbox
 
-Check my OS, Python version and GPU. Start with Pocket TTS for a simple CPU setup; offer Chatterbox if I want more expression or language options. Use a separate Python environment and install dependencies for my hardware.
+Check my OS, RAM, CPU and GPU, then read the current setup docs. Use Pocket TTS for a simple CPU setup, Chatterbox Nano for expressive English on CPU, or a larger Chatterbox model if my hardware supports it. Install in an isolated environment with dependencies matched to my machine.
 
-I will provide reference.wav (my voice or a voice I have permission to use) and script.txt. Generate voiceover.wav from that script using the reference voice. Start with one short test, let me listen, then generate the full script in manageable chunks.
+I will provide reference.wav (a voice I have permission to clone) and script.txt. Generate a short sample using that voice, then export the full script as voiceover.wav. Build a simple local interface to upload the reference, enter text, listen and download WAV. Give me one command to run it again. Keep the files local.</pre>
+  </div>
 
-Give me a repeatable command and a minimal local UI to upload a reference, enter text, preview and download WAV. Keep files local, bind the UI to localhost, handle missing files clearly, and document the installed versions. If model access needs approval or a login, tell me before proceeding.</pre></div>
-<p class="note">No ElevenLabs subscription required. You still need compute, storage and the initial model download. Voice quality depends on your sample and chosen model; listen to a short test before rendering everything.</p>
-</section>
 </article>
-<footer>Made by <a href="https://www.instagram.com/adi.mkv/" style="color:inherit">Adi</a> &nbsp;·&nbsp; Better AI UGC, one detail at a time.</footer><script>
-const progress = document.getElementById('progress');
-function updateProgress() { const total = document.documentElement.scrollHeight - innerHeight; progress.style.width = (total > 0 ? scrollY / total * 100 : 0) + '%'; }
-addEventListener('scroll', updateProgress, {passive:true}); addEventListener('resize', updateProgress); updateProgress();
-async function copyText(text) {
-  if (navigator.clipboard && window.isSecureContext) { await navigator.clipboard.writeText(text); return; }
-  const el=document.createElement('textarea'); el.value=text; el.style.cssText='position:fixed;opacity:0'; document.body.appendChild(el); el.select();
-  const copied=document.execCommand('copy'); el.remove(); if (!copied) throw new Error('Copy failed');
-}
-document.querySelectorAll('[data-copy]').forEach(btn => btn.addEventListener('click', async () => {
-  const label=btn.querySelector('.btn-label');
-  try { await copyText(document.getElementById(btn.dataset.copy).textContent); label.textContent='Copied!'; btn.classList.add('copied'); }
-  catch { label.textContent='Select text'; }
-  clearTimeout(btn.resetTimer); btn.resetTimer=setTimeout(()=>{ label.textContent='Copy'; btn.classList.remove('copied'); },2000);
-}));
-</script></body></html>
+
+<footer>
+  &copy; 2026 &nbsp;·&nbsp; All rights reserved
+</footer>
+
+<script>
+  const bar = document.getElementById('progress');
+  window.addEventListener('scroll', () => {
+    const total = document.body.scrollHeight - window.innerHeight;
+    bar.style.width = (window.scrollY / total * 100) + '%';
+  }, { passive: true });
+
+  let resetTimers = {};
+
+  function copyCode(btn, id) {
+    const text = document.getElementById(id).textContent;
+    const label = btn.querySelector(".btn-label");
+
+    if (resetTimers[id]) clearTimeout(resetTimers[id]);
+    btn.classList.remove("fading");
+    label.textContent = "Copied!";
+    btn.classList.add("copied");
+
+    resetTimers[id] = setTimeout(() => {
+      btn.classList.remove("copied");
+      btn.classList.add("fading");
+      setTimeout(() => {
+        label.textContent = "Copy";
+        btn.classList.remove("fading");
+      }, 620);
+    }, 1600);
+
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).catch(() => fallbackCopy(text));
+    } else {
+      fallbackCopy(text);
+    }
+  }
+
+  function fallbackCopy(text) {
+    const ta = document.createElement("textarea");
+    ta.value = text;
+    ta.style.cssText = "position:fixed;top:0;left:0;opacity:0;pointer-events:none;";
+    document.body.appendChild(ta);
+    ta.focus(); ta.select();
+    try { document.execCommand("copy"); } catch(e) {}
+    document.body.removeChild(ta);
+  }
+</script>
+
+</body>
+</html>

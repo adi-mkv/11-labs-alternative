@@ -4,421 +4,220 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Free ElevenLabs Alternatives — Pocket TTS &amp; Chatterbox</title>
+<meta name="description" content="Pocket TTS and Chatterbox: two free, open-source tools for custom AI voiceovers, running on your own computer.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Geist:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500&family=Geist:wght@400;500&family=Geist+Mono:wght@500&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --bg-from:   #0f0d13;
-    --bg-to:     #0a0a0c;
-    --bg-raised: #17151e;
-    --bg-inset:  #1e1c27;
-    --border:    #272430;
-    --text:      #f0ede8;
-    --text-2:    #f0ede8;
-    --text-3:    #6b6880;
-    --accent:    #3d2474;
-    --col:       680px;
+    --surface: #17151e;
+    --line: #272430;
+    --text: #f0ede8;
+    --muted: #b5b2aa;
+    --accent: #8f78f2;
+    --tint: rgba(143, 120, 242, 0.14);
+    --tint-text: #c9bcfb;
+    --glass: linear-gradient(#fff 24%, #f7f5f1 50%, #9a978f 84%, #b5b2aa);
+    --mono: 'Geist Mono', monospace;
   }
 
-  html { font-size: 17px; scroll-behavior: smooth; }
+  html { font-size: 17px; color-scheme: dark; }
 
   body {
-    background: linear-gradient(135deg, var(--bg-from) 0%, var(--bg-to) 100%);
-    min-height: 100vh;
+    background:
+      radial-gradient(1200px 520px at 30% -120px, rgba(143, 120, 242, 0.12), transparent 70%) no-repeat,
+      linear-gradient(#13111a, #0f0d13 900px, #0a0a0c 2200px) no-repeat #0a0a0c;
     color: var(--text);
-    font-family: 'Geist', system-ui, sans-serif;
-    font-weight: 300;
-    line-height: 1.75;
+    font-family: 'Geist', sans-serif;
+    line-height: 1.7;
     -webkit-font-smoothing: antialiased;
   }
 
-  #progress {
-    position: fixed;
-    top: 0; left: 0;
-    height: 2px;
-    background: var(--accent);
-    width: 0%;
-    z-index: 200;
-    transition: width 0.08s linear;
-  }
+  a { color: inherit; text-decoration: none; }
+  p { max-width: 65ch; margin-bottom: 1.2rem; }
+  strong { font-weight: 500; }
 
-  .hero {
-    max-width: var(--col);
-    margin: 0 auto;
-    padding: 4rem 1.5rem 0;
-    opacity: 0;
-    animation: fadeUp 0.7s ease 0.1s forwards;
-  }
+  /* Type: display, title, lead, body, label, code */
 
-  h1 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(2.8rem, 7vw, 4.2rem);
-    font-weight: 700;
-    line-height: 1.08;
-    letter-spacing: -0.02em;
-    color: var(--text);
-    margin-bottom: 1.2rem;
-  }
-
-  .subtitle {
-    font-family: 'Geist', sans-serif;
-    font-size: 0.98rem;
-    font-weight: 300;
-    color: var(--text-2);
-    line-height: 1.72;
-    margin-bottom: 1.6rem;
-    max-width: 540px;
-  }
-
-  .byline {
-    display: flex;
-    align-items: center;
-    gap: 0.9rem;
-    padding-bottom: 1.4rem;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .avatar {
-    width: 36px; height: 36px;
-    border-radius: 50%;
-    background: var(--bg-inset);
-    border: 1px solid var(--border);
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 0.95rem;
-    font-weight: 600;
-    color: var(--text-2);
-    flex-shrink: 0;
-  }
-
-  .byline-text { font-size: 0.76rem; color: var(--text-3); line-height: 1.5; }
-  .byline-text strong { color: var(--text-2); font-weight: 500; display: block; }
-
-  article {
-    max-width: var(--col);
-    margin: 0 auto;
-    padding: 2.6rem 1.5rem 7rem;
-    opacity: 0;
-    animation: fadeUp 0.8s ease 0.25s forwards;
-  }
-
-  article p {
-    font-family: 'Geist', sans-serif;
-    font-size: 1rem;
-    font-weight: 300;
-    color: var(--text-2);
-    margin-bottom: 1.5rem;
-    line-height: 1.82;
-  }
-
-  article p:first-of-type { font-size: 1.04rem; }
-
-  .drop-cap::first-letter {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 4.5rem;
-    font-weight: 700;
-    float: left;
-    line-height: 0.8;
-    margin-right: 0.1em;
-    margin-top: 0.12em;
-    color: var(--text);
-  }
-
-  h2 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.75rem;
-    font-weight: 600;
-    color: var(--text);
-    margin: 3.5rem 0 0.85rem;
-    line-height: 1.2;
-    letter-spacing: -0.01em;
-  }
-
-  .skill-num {
-    display: inline-block;
-    font-family: 'Geist', sans-serif;
-    font-size: 0.65rem;
+  h1, h2, .figure {
+    font-family: 'Inter Tight', sans-serif;
     font-weight: 500;
-    letter-spacing: 0.1em;
-    color: var(--text-3);
+    letter-spacing: -0.035em;
+    line-height: 1.1;
+  }
+
+  h2, .figure, h1 span, h1 em {
+    color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+  }
+
+  h2, .figure, h1 span { background-image: var(--glass); }
+
+  /* --fit is the width of the longest title line in em */
+  h1 {
+    font-size: min(clamp(2.8rem, 8.4vw, 6.6rem), calc((100vw - 3rem) / var(--fit)));
+    line-height: 0.98;
+    letter-spacing: -0.045em;
+    padding-bottom: 0.08em;
+    margin-bottom: 1.5rem;
+  }
+
+  /* Extend gradients below the baseline; margins preserve the existing spacing. */
+  h1 span, h2 { padding-bottom: 0.15em; }
+  h1 span { display: block; white-space: nowrap; margin-bottom: -0.15em; }
+  h1 em { font-style: normal; background-image: linear-gradient(#ece7ff, #c9bcfb 30%, var(--accent) 72%, #6a52d6); }
+
+  h2, .figure { font-size: 2.2rem; }
+  h2 { margin-bottom: calc(1rem - 0.15em); }
+  .figure { margin-bottom: 1rem; }
+
+  .lead { font-size: 1.2rem; line-height: 1.55; max-width: 34rem; }
+
+  .label {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.07em;
     text-transform: uppercase;
-    margin-bottom: 0.4rem;
+    color: var(--muted);
   }
 
-  /* Code block */
-  .code-wrap {
-    background: var(--bg-raised);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    overflow: hidden;
-    margin: 2.8rem 0;
-  }
+  code, pre { font-family: var(--mono); font-size: 0.8rem; }
+  code { background: var(--tint); color: var(--tint-text); padding: 0.08em 0.4em; border-radius: 4px; }
+  pre { padding: 1.3rem 1.2rem; line-height: 1.75; white-space: pre-wrap; overflow-wrap: anywhere; }
+  .tag { display: block; width: fit-content; margin-bottom: 1.25rem; padding: 0.25rem 0.55rem; border-radius: 6px; background: var(--tint); color: var(--tint-text); }
 
-  .code-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0.65rem 1.1rem;
-    border-bottom: 1px solid var(--border);
-    font-family: 'Geist', sans-serif;
-    font-size: 0.7rem;
-    letter-spacing: 0.06em;
-    color: var(--text-3);
-  }
+  /* Layout */
 
-  .copy-btn {
-    position: relative;
-    background: none;
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    color: var(--text-3);
-    font-family: 'Geist', sans-serif;
-    font-size: 0.65rem;
-    letter-spacing: 0.05em;
-    padding: 0.25rem 0.65rem;
-    cursor: pointer;
-    overflow: hidden;
-    transition: color 0.2s, border-color 0.2s, background 0.2s;
-    min-width: 52px;
-  }
+  main, footer p { max-width: 1120px; margin: 0 auto; padding: 0 1.5rem; }
 
-  .copy-btn:hover {
-    color: var(--text-2);
-    border-color: var(--text-3);
-  }
+  .hero { padding: 5rem 0 3rem; border-bottom: 1px solid; border-image: linear-gradient(90deg, var(--line) 60%, transparent) 1; }
+  .byline { display: flex; gap: 0.9rem; margin-top: 2rem; }
+  .byline span + span::before { content: '·'; margin-right: 0.9rem; }
 
-  .copy-btn .btn-label {
-    display: block;
-    transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.18s ease;
-  }
+  section { margin: 3.5rem 0; }
+  .split { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 3rem; align-items: start; }
+  .split > *, .cards > * { min-width: 0; }
 
-  .copy-btn.copied {
-    color: #9d8ec4;
-    border-color: #5a4490;
-    background: rgba(61, 36, 116, 0.15);
-  }
+  .card { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; }
+  .cards { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .cards .card { display: flex; flex-direction: column; padding: 1.75rem; }
 
-  .copy-btn.copied .btn-label {
-    transform: scale(1.08);
-  }
+  .media { display: block; width: 100%; border-radius: 12px; margin-bottom: 1.5rem; }
+  .video { display: block; width: min(100%, 360px); aspect-ratio: 9 / 16; margin: 0 auto; border-radius: 12px; }
 
-  .copy-btn.fading {
-    transition: color 0.6s ease, border-color 0.6s ease, background 0.6s ease;
-    color: var(--text-3);
-    border-color: var(--border);
-    background: none;
-  }
+  .code { margin-bottom: 1rem; }
+  .code header { display: flex; justify-content: space-between; align-items: center; padding: 0.7rem 0.9rem 0.7rem 1.1rem; border-bottom: 1px solid var(--line); }
+  .code button { min-width: 70px; padding: 0.4rem 0.75rem; border: 0; border-radius: 6px; background: var(--text); color: #0a0a0c; cursor: pointer; }
+  .code button:hover { background: #fff; }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
 
-  pre {
-    padding: 1.4rem 1.2rem;
-    overflow-x: auto;
-    font-family: 'Geist Mono', 'Fira Code', 'Courier New', monospace;
-    font-size: 0.79rem;
-    line-height: 1.75;
-    color: var(--text-2);
-    white-space: pre-wrap;
-    word-break: break-word;
-  }
+  .rows { margin-bottom: 1.5rem; border-bottom: 1px solid var(--line); }
+  .rows div { display: grid; grid-template-columns: 7.5rem 1fr; gap: 1rem; align-items: baseline; padding: 0.6rem 0; border-top: 1px solid var(--line); }
 
-  pre .comment { color: #6b6880; }
+  .links { margin-top: auto; }
+  .links a { display: flex; justify-content: space-between; padding: 0.8rem 0; border-top: 1px solid var(--line); }
+  .links a::after { content: '↗'; color: var(--muted); }
+  .links a:hover, .links a:hover::after { color: var(--tint-text); }
 
-  .link-row {
-    display: flex;
-    gap: 0.75rem;
-    flex-wrap: wrap;
-    margin-top: 0.25rem;
-    margin-bottom: 1.75rem;
-  }
+  .prices { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; margin: 2.5rem 0 1.25rem; }
+  .prices div { display: flex; flex-direction: column; gap: 0.35rem; padding: 1.25rem 1.4rem; background: var(--surface); }
+  .prices .figure { margin: 0.2rem 0 0; }
+  .prices .ours { background: #221d33; }
 
-  .pill-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.35rem;
-    padding: 0.3rem 0.85rem;
-    border-radius: 99px;
-    border: 1px solid var(--border);
-    background: var(--bg-raised);
-    font-family: 'Geist', sans-serif;
-    font-size: 0.7rem;
-    font-weight: 400;
-    color: var(--text-3);
-    text-decoration: none;
-    letter-spacing: 0.04em;
-    transition: color 0.18s, border-color 0.18s;
-  }
+  .source { border-bottom: 1px solid var(--line); }
+  .source:hover { color: var(--tint-text); }
 
-  .pill-link:hover {
-    color: var(--text-2);
-    border-color: var(--text-3);
-  }
+  footer { padding: 1.6rem 0; border-top: 1px solid var(--line); }
 
-  .skill-img {
-    width: 100%;
-    border-radius: 8px;
-    border: 1px solid var(--border);
-    display: block;
-    margin: 1.6rem 0 1.4rem;
-    background: var(--bg-raised);
-  }
-
-  .divider {
-    border: none;
-    border-top: 1px solid var(--border);
-    margin: 3rem 0;
-  }
-
-  footer {
-    border-top: 1px solid var(--border);
-    padding: 1.8rem 1.5rem;
-    text-align: center;
-    font-size: 0.7rem;
-    color: var(--text-3);
-    letter-spacing: 0.06em;
-  }
-
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(12px); }
-    to   { opacity: 1; transform: translateY(0); }
+  @media (max-width: 860px) {
+    .split, .cards { grid-template-columns: 1fr; gap: 2rem; }
+    .prices { grid-template-columns: 1fr 1fr; }
   }
 
   @media (max-width: 600px) {
-    h1 { font-size: 2.4rem; }
-    .hero { padding-top: 2.5rem; padding-left: 1.5rem; padding-right: 1.5rem; }
+    .hero { padding: 3.5rem 0 2.5rem; }
+    .cards .card { padding: 1.4rem; }
+    h2, .figure { font-size: 1.8rem; }
+    .rows div { grid-template-columns: 6rem 1fr; }
   }
 </style>
 </head>
 <body>
 
-<div id="progress"></div>
+<main>
 
-<section class="hero">
-  <h1>Clone Voices Without ElevenLabs</h1>
-  <p class="subtitle">Pocket TTS and Chatterbox: two free, open-source tools for custom AI voiceovers, running on your own computer.</p>
-  <div class="byline">
-    <div class="avatar">A</div>
-    <div class="byline-text">
-      <strong>Adi</strong>
-      2 min read &nbsp;·&nbsp; October 2026
+  <header class="hero">
+    <h1 style="--fit: 7.9"><span>Clone voices</span> <span>without <em>ElevenLabs</em></span></h1>
+    <p class="lead">Pocket TTS and Chatterbox: two free, open-source tools for custom AI voiceovers, running on your own computer.</p>
+    <div class="byline label"><span>Adi</span><span>2 min read</span></div>
+  </header>
+
+  <section>
+<p>ElevenLabs puts voice cloning behind a paid plan. These two free alternatives turn a short voice sample and your script into speech on your own computer, with no subscription or per-character fee.</p><div class="prices">
+      <div><span class="label">ElevenLabs Free</span><span class="figure">$0</span><span>10,000 credits, no voice cloning</span></div>
+      <div><span class="label">ElevenLabs Starter</span><span class="figure">$6/mo</span><span>30,000 credits, instant cloning</span></div>
+      <div><span class="label">ElevenLabs Creator</span><span class="figure">$22/mo</span><span>121,000 credits, professional cloning</span></div>
+      <div class="ours"><span class="label">Pocket TTS &amp; Chatterbox</span><span class="figure">$0</span><span>Local, no per-character fee</span></div>
     </div>
-  </div>
-</section>
+    <a class="label source" href="https://elevenlabs.io/pricing" target="_blank" rel="noopener">ElevenLabs pricing ↗</a>
+  </section>
 
-<article>
-
-  <p class="drop-cap">ElevenLabs makes voice cloning easy, but it comes with a subscription. Its Starter plan is $6/month for instant voice cloning and 30,000 credits; Creator is $22/month with professional voice cloning and 121,000 credits. The free plan has 10,000 credits but no voice cloning. Those are regular monthly prices before tax, excluding first-month offers.</p>
-
-  <div class="link-row">
-    <a class="pill-link" href="https://elevenlabs.io/pricing" target="_blank">↗ ElevenLabs pricing · checked October 2026</a>
-  </div>
-
-  <p>These two alternatives clone a voice from reference audio and turn your script into speech. Both are free to run locally, with no subscription or per-character fee. You provide the computer and electricity.</p>
-
-  <hr class="divider">
-
-  <span class="skill-num">01 / 02</span>
-  <h2>Pocket TTS</h2>
-
-  <p>Kyutai’s lightweight option is the easiest starting point for most reasonably recent laptops and desktops. It runs on CPU, uses just two CPU cores, and needs no dedicated GPU. Give it a clean voice sample and your script; it generates a WAV voiceover in that voice.</p>
-
-  <p>The standard model has 100 million parameters, with smaller English models available for weaker machines. Windows, macOS and Linux are supported. Actual speed depends on your CPU and chosen model.</p>
-
-  <img class="skill-img" src="https://github.com/user-attachments/assets/637b5ed6-831f-4023-9b4c-741be21ab238" alt="Kyutai Pocket TTS — lightweight voice cloning on CPU" loading="lazy">
-
-  <div class="link-row">
-    <a class="pill-link" href="https://github.com/kyutai-labs/pocket-tts" target="_blank">↗ GitHub &amp; setup</a>
-    <a class="pill-link" href="https://kyutai.org/pocket-tts" target="_blank">↗ Try the demo</a>
-  </div>
-
-  <hr class="divider">
-
-  <span class="skill-num">02 / 02</span>
-  <h2>Chatterbox</h2>
-
-  <p>Resemble AI’s voice-cloning family offers more expressive controls and multilingual options. Nano and Turbo support cues such as <code>[laugh]</code> and <code>[chuckle]</code>; the separate Multilingual model supports 23 languages.</p>
-
-  <p>For an ordinary computer without a dedicated GPU, choose <strong>Chatterbox Nano</strong>: its 110-million-parameter model is designed for CPU use. Resemble reports faster-than-real-time generation on eight CPU cores. Turbo and Multilingual are heavier; an NVIDIA CUDA GPU is the practical choice for fast generation. You don’t need one to start with Nano or Pocket TTS.</p>
-
-  <img class="skill-img" src="https://raw.githubusercontent.com/resemble-ai/chatterbox/master/Chatterbox-Multilingual.png" alt="Chatterbox Multilingual by Resemble AI" loading="lazy">
-
-  <div class="link-row">
-    <a class="pill-link" href="https://github.com/resemble-ai/chatterbox" target="_blank">↗ GitHub &amp; setup</a>
-    <a class="pill-link" href="https://huggingface.co/ResembleAI/chatterbox-nano" target="_blank">↗ CPU model</a>
-    <a class="pill-link" href="https://resemble-ai.github.io/chatterbox_demopage/" target="_blank">↗ Listen to samples</a>
-  </div>
-
-  <hr class="divider">
-
-  <h2>Let your agent set it up</h2>
-
-  <p>Prepare a clean, single-speaker voice clip—about 10 seconds is a useful starting point—and your script. Use your own voice or one you have permission to clone. Paste this into your coding agent:</p>
-
-  <div class="code-wrap">
-    <div class="code-header">
-      <span>AGENT PROMPT</span>
-      <button class="copy-btn" onclick="copyCode(this, 'agent-prompt')">
-        <span class="btn-label">Copy</span>
-      </button>
+  <section class="cards">
+<div class="card">
+      <span class="label tag">CPU · Easiest</span>
+      <h2>Pocket TTS</h2>
+      <p>Kyutai's lightweight option is the easiest place to start. It runs on two CPU cores with no GPU: give it a clean voice sample and your script, and it generates a WAV voiceover in that voice.</p>
+<p>Smaller English models are available for older machines. Speed depends on your CPU and model.</p>
+      <div class="rows"><div><span class="label">Hardware</span><span>CPU, two cores, no GPU</span></div><div><span class="label">Model</span><span>100M parameters, smaller English options</span></div><div><span class="label">Platforms</span><span>Windows, macOS, Linux</span></div></div>
+      <img class="media" src="https://github.com/user-attachments/assets/637b5ed6-831f-4023-9b4c-741be21ab238" alt="Kyutai Pocket TTS" loading="lazy">
+      <div class="links"><a href="https://github.com/kyutai-labs/pocket-tts" target="_blank" rel="noopener">GitHub & setup</a><a href="https://kyutai.org/pocket-tts" target="_blank" rel="noopener">Try the demo</a></div>
     </div>
-    <pre id="agent-prompt">Set up voice cloning on my computer using these official repos:
+<div class="card">
+      <span class="label tag">Expressive · Multilingual</span>
+      <h2>Chatterbox</h2>
+      <p>Resemble AI's models add expressive cues like <code>[laugh]</code> and <code>[chuckle]</code>, and the Multilingual model covers 23 languages.</p>
+<p>Without a GPU, use <strong>Chatterbox Nano</strong>: it's built for CPU and runs faster than real time on eight cores. Turbo and Multilingual are heavier and work best on an NVIDIA CUDA GPU.</p>
+      <div class="rows"><div><span class="label">Hardware</span><span>Nano on CPU; CUDA GPU for larger models</span></div><div><span class="label">Model</span><span>Nano: 110M parameters</span></div><div><span class="label">Languages</span><span>23 with Multilingual</span></div></div>
+      <img class="media" src="https://raw.githubusercontent.com/resemble-ai/chatterbox/master/Chatterbox-Multilingual.png" alt="Chatterbox Multilingual by Resemble AI" loading="lazy">
+      <div class="links"><a href="https://github.com/resemble-ai/chatterbox" target="_blank" rel="noopener">GitHub & setup</a><a href="https://huggingface.co/ResembleAI/chatterbox-nano" target="_blank" rel="noopener">CPU model</a><a href="https://resemble-ai.github.io/chatterbox_demopage/" target="_blank" rel="noopener">Listen to samples</a></div>
+    </div>
+  </section>
+
+  <section class="split">
+<div><h2>Let your agent set it up</h2><p>Prepare a clean, single-speaker clip of about 10 seconds and your script. Use your own voice or one you have permission to clone, then paste this into your coding agent.</p></div>
+<div><div class="card code">
+      <header><span class="label">Agent prompt</span><button type="button" class="label" aria-live="polite" onclick="copyCode(this)">Copy</button></header>
+      <pre>Set up voice cloning on my computer using these official repos:
 https://github.com/kyutai-labs/pocket-tts
 https://github.com/resemble-ai/chatterbox
 
 Check my OS, RAM, CPU and GPU, then read the current setup docs. Use Pocket TTS for a simple CPU setup, Chatterbox Nano for expressive English on CPU, or a larger Chatterbox model if my hardware supports it. Install in an isolated environment with dependencies matched to my machine.
 
 I will provide reference.wav (a voice I have permission to clone) and script.txt. Generate a short sample using that voice, then export the full script as voiceover.wav. Build a simple local interface to upload the reference, enter text, listen and download WAV. Give me one command to run it again. Keep the files local.</pre>
-  </div>
+    </div></div>
+  </section>
 
-</article>
+</main>
 
-<footer>
-  &copy; 2026 &nbsp;·&nbsp; All rights reserved
-</footer>
+<footer><p class="label">&copy; 2026 Adi &nbsp;·&nbsp; All rights reserved</p></footer>
 
 <script>
-  const bar = document.getElementById('progress');
-  window.addEventListener('scroll', () => {
-    const total = document.body.scrollHeight - window.innerHeight;
-    bar.style.width = (window.scrollY / total * 100) + '%';
-  }, { passive: true });
-
-  let resetTimers = {};
-
-  function copyCode(btn, id) {
-    const text = document.getElementById(id).textContent;
-    const label = btn.querySelector(".btn-label");
-
-    if (resetTimers[id]) clearTimeout(resetTimers[id]);
-    btn.classList.remove("fading");
-    label.textContent = "Copied!";
-    btn.classList.add("copied");
-
-    resetTimers[id] = setTimeout(() => {
-      btn.classList.remove("copied");
-      btn.classList.add("fading");
-      setTimeout(() => {
-        label.textContent = "Copy";
-        btn.classList.remove("fading");
-      }, 620);
-    }, 1600);
-
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(text).catch(() => fallbackCopy(text));
-    } else {
-      fallbackCopy(text);
+  async function copyCode(button) {
+    button.disabled = true;
+    try {
+      await navigator.clipboard.writeText(button.closest('.code').querySelector('pre').textContent);
+      button.textContent = 'Copied';
+    } catch {
+      button.textContent = 'Copy failed';
     }
-  }
-
-  function fallbackCopy(text) {
-    const ta = document.createElement("textarea");
-    ta.value = text;
-    ta.style.cssText = "position:fixed;top:0;left:0;opacity:0;pointer-events:none;";
-    document.body.appendChild(ta);
-    ta.focus(); ta.select();
-    try { document.execCommand("copy"); } catch(e) {}
-    document.body.removeChild(ta);
+    setTimeout(() => {
+      button.textContent = 'Copy';
+      button.disabled = false;
+    }, 1600);
   }
 </script>
 
